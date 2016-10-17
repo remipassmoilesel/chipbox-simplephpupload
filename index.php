@@ -383,6 +383,128 @@
 
 		$file_array = createArrayFromPath($data['uploaddir']);
 	}
+
+$styleBlock = <<<EOT
+<style type="text/css" media="screen">
+    body {
+        background: #111;
+        margin: 0;
+        color: #ddd;
+        font-family: sans-serif;
+    }
+    
+    body > h1 {
+        display: block;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 8px 16px;
+        text-align: center;
+        margin: 0;
+    }
+    
+    body > form {
+        display: block;
+        background: rgba(255, 255, 255, 0.075);
+        padding: 16px 16px;
+        margin: 0;
+        text-align: center;
+    }
+    
+    body > ul {
+        display: block;
+        padding: 0;
+        max-width: 1000px;
+        margin: 32px auto;
+    }
+    
+    body > ul > li {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body > ul > li > a.uploaded_file {
+        display: block;
+        margin: 0 0 1px 0;
+        list-style: none;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 8px 16px;
+        text-decoration: none;
+        color: inherit;
+        opacity: 0.5;
+    }
+    
+    body > ul > li > a:hover {
+        opacity: 1;
+    }
+    
+    body > ul > li > a:active {
+        opacity: 0.5;
+    }
+    
+    body > ul > li > a > span {
+        float: right;
+        font-size: 90%;
+    }
+    
+    body > ul > li > form {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+    
+    body > ul > li.owned {
+        margin: 8px;
+    }
+    
+    body > ul > li > form > button {
+        opacity: 0.5;
+        display: inline-block;
+        padding: 4px 16px;
+        margin: 0;
+        border: 0;
+        background: rgba(255, 255, 255, 0.1);
+        color: inherit;
+    }
+    
+    body > ul > li > form > button:hover {
+        opacity: 1;
+    }
+    
+    body > ul > li > form > button:active {
+        opacity: 0.5;
+    }
+    
+    body > ul > li.uploading {
+        animation: upanim 2s linear 0s infinite alternate;
+    }
+    
+    @keyframes upanim {
+        from {
+            opacity: 0.3;
+        }
+        to {
+            opacity: 0.8;
+        }
+    }
+    
+    .footer {
+        margin: auto;
+        margin-bottom: 50px;
+    
+        font-size: 0.9em;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 8px 16px;
+        text-align: center;
+        color: gray;
+    
+    }
+    
+    .no_file_message{
+        font-style: italic;
+    }
+</style>
+EOT;
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?=$settings['lang']?>" lang="<?=$settings['lang']?>" dir="<?=$settings['lang_dir']?>">
@@ -395,124 +517,7 @@
 		<meta name="robots" content="noindex" />
 		<meta name="referrer" content="origin-when-crossorigin" />
 		<title><?=$settings['title']?></title>
-		<style type="text/css" media="screen">
-			body {
-				background: #111;
-				margin: 0;
-				color: #ddd;
-				font-family: sans-serif;
-			}
-
-			body > h1 {
-				display: block;
-				background: rgba(255, 255, 255, 0.05);
-				padding: 8px 16px;
-				text-align: center;
-				margin: 0;
-			}
-
-			body > form {
-				display: block;
-				background: rgba(255, 255, 255, 0.075);
-				padding: 16px 16px;
-				margin: 0;
-				text-align: center;
-			}
-
-			body > ul {
-				display: block;
-				padding: 0;
-				max-width: 1000px;
-				margin: 32px auto;
-			}
-
-			body > ul > li {
-				display: block;
-				margin: 0;
-				padding: 0;
-			}
-
-			body > ul > li > a.uploaded_file {
-				display: block;
-				margin: 0 0 1px 0;
-				list-style: none;
-				background: rgba(255, 255, 255, 0.1);
-				padding: 8px 16px;
-				text-decoration: none;
-				color: inherit;
-				opacity: 0.5;
-			}
-
-			body > ul > li > a:hover {
-				opacity: 1;
-			}
-
-			body > ul > li > a:active {
-				opacity: 0.5;
-			}
-
-			body > ul > li > a > span {
-				float: right;
-				font-size: 90%;
-			}
-
-			body > ul > li > form {
-				display: inline-block;
-				padding: 0;
-				margin: 0;
-			}
-
-			body > ul > li.owned {
-				margin: 8px;
-			}
-
-			body > ul > li > form > button {
-				opacity: 0.5;
-				display: inline-block;
-				padding: 4px 16px;
-				margin: 0;
-				border: 0;
-				background: rgba(255, 255, 255, 0.1);
-				color: inherit;
-			}
-
-			body > ul > li > form > button:hover {
-				opacity: 1;
-			}
-
-			body > ul > li > form > button:active {
-				opacity: 0.5;
-			}
-
-			body > ul > li.uploading {
-				animation: upanim 2s linear 0s infinite alternate;
-			}
-
-			@keyframes upanim {
-				from {
-					opacity: 0.3;
-				}
-				to {
-					opacity: 0.8;
-				}
-			}
-
-            .footer {
-                margin: auto;
-                margin-bottom: 50px;
-
-                font-size: 0.9em;
-                background: rgba(255, 255, 255, 0.05);
-                padding: 8px 16px;
-                text-align: center;
-                color: gray;
-
-            }
-
-            .no_file_message{
-                font-style: italic;
-            }
-		</style>
+		<?=$styleBlock?>
 	</head>
 	<body>
 		<h1><?=$settings['title']?></h1>
