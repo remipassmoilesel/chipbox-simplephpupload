@@ -43,14 +43,6 @@
 		// Default: true
 		'listfiles_size' => true,
 
-		// Display file dates
-		// Default: true
-		'listfiles_date' => true,
-
-		// Display file dates format
-		// Default: 'F d Y H:i:s'
-		'listfiles_date_format' => 'F d Y H:i:s',
-
 		// Randomize file names. Number for file name lenght or false to disable.
 		// Default: 8
 		'random_name_len' => 8,
@@ -545,9 +537,6 @@
 
 						if ($settings['listfiles_size'])
 							$file_info[] = formatSize(filesize($fqfn));
-
-						if ($settings['listfiles_size'])
-							$file_info[] = date($settings['listfiles_date_format'], $mtime);
 
 						if ($settings['allow_deletion'] || $settings['allow_private'])
 							if (in_array(substr($filename, 1), $_SESSION['upload_user_files']) || in_array($filename, $_SESSION['upload_user_files']))
