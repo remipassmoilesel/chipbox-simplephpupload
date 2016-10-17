@@ -5,5 +5,11 @@
 
 //$settings['some_foo'] = 'FOO';
 
+$settings['debug'] = false;
+
+$settings['title'] = "Minibox upload";
+$settings['description'] = "Upload files and share them !";
+
 $settings['url'] = autoDetectBaseUrl();
-$settings['debug'] = true;
+$settings['allow_private'] = false;
+$settings['ribbon_enable'] = false;
