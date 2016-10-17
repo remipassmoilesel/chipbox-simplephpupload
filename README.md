@@ -15,9 +15,9 @@ Just drop a PHP file in any directory, and adapt 'php.ini'
 On OpenWRT with lighttpd:
 
     $ cd /www
-    $ wget https://github.com/remipassmoilesel/minibox-simple-php-upload/archive/master.zip
+    $ wget https://github.com/remipassmoilesel/chipbox-simple-php-upload/archive/master.zip
     $ unzip master.zip
-    $ chown -R http:www-data minibox-simple-php-upload
+    $ chown -R http:www-data chipbox-simple-php-upload
 
 ## Configuration
 

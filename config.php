@@ -4,7 +4,7 @@
 // Please limit your configuration to settings below.
 
 $settings['debug'] = false;
-$settings['title'] = "Minibox upload";
+$settings['title'] = "chipbox upload";
 $settings['description'] = "Upload files and share them !";
 $settings['allow_deletion'] = true;
 

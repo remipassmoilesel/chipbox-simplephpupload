@@ -753,8 +753,8 @@ EOT;
 
         <div class="footer">
             <p>This page is available at: <a href="<?= $settings['url'] ?>"><?= $settings['url'] ?></a></p>
-            <p>Source code: <a href="https://github.com/remipassmoilesel/minibox-simple-php-upload">
-                    https://github.com/remipassmoilesel/minibox-simple-php-upload</a></p>
+            <p>Source code: <a href="https://github.com/remipassmoilesel/chipbox-simple-php-upload">
+                    https://github.com/remipassmoilesel/chipbox-simple-php-upload</a></p>
         </div>
 	</body>
 </html>
