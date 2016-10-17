@@ -504,6 +504,22 @@
 					opacity: 0.8;
 				}
 			}
+
+            .footer {
+                margin: auto;
+                margin-bottom: 50px;
+
+                font-size: 0.9em;
+                background: rgba(255, 255, 255, 0.05);
+                padding: 8px 16px;
+                text-align: center;
+                color: gray;
+
+            }
+
+            .no_file_message{
+                font-style: italic;
+            }
 		</style>
 	</head>
 	<body>
@@ -572,7 +588,7 @@
 					}
 
                     if($displayed < 1){
-                        echo "<li>No files to display. Upload some !</li>";
+                        echo "<li class='no_file_message'>No files to display. Upload some !</li>";
                     }
 				?>
 			</ul>
@@ -672,8 +688,10 @@
 		//-->
 		</script>
 
-        <p>This page is available at: <a href="<?= $settings['url'] ?>"><?= $settings['url'] ?></a></p>
-        <p>Based on: <a href="https://github.com/muchweb/simple-php-upload">
-                https://github.com/muchweb/simple-php-upload</a></p>
+        <div class="footer">
+            <p>This page is available at: <a href="<?= $settings['url'] ?>"><?= $settings['url'] ?></a></p>
+            <p>This uploader is based on: <a href="https://github.com/muchweb/simple-php-upload">
+                    https://github.com/muchweb/simple-php-upload</a></p>
+        </div>
 	</body>
 </html>
