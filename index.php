@@ -69,10 +69,6 @@
 		// Default: autoDetectBaseUrl()
 		'url' => autoDetectBaseUrl(),
 
-		// Amount of seconds that each file should be stored for (0 for no limit)
-		// Default: 30 days (60 * 60 * 24 * 30)
-		'time_limit' => 60 * 60 * 24 * 30,
-
 		// Files that will be ignored
 		'ignores' => array(
 			'.',
@@ -508,6 +504,7 @@ EOT;
 	}
 
 	// List files in a given directory, excluding certain files
+    // return an associative array: array[fullpath] = filename
 	function createArrayFromPath ($dir) {
 		global $data;
 
@@ -521,9 +518,10 @@ EOT;
 		$dh = opendir($dir) or showErrorAndDie(sprintf('[%s:%d]: R.I.P.: Cannot read directory "%s".', __FUNCTION__, __LINE__, $dir));
 
 		while ($filename = readdir($dh)) {
+
 			$fqfn = $dir . DIRECTORY_SEPARATOR . $filename;
 			if (isReadableFile($fqfn) && !in_array($filename, $data['ignores'])) {
-				$file_array[filemtime($fqfn)] = $filename;
+				$file_array[$fqfn] = $filename;
 			}
 		} //END - while
 
@@ -532,18 +530,6 @@ EOT;
 		$file_array = array_reverse($file_array, true);
 
 		return $file_array;
-	}
-
-	// Removes old files
-	function removeOldFiles ($dir) {
-		global $file_array, $settings;
-
-		foreach ($file_array as $file) {
-			$fqfn = $dir . DIRECTORY_SEPARATOR . $file;
-			if ($settings['time_limit'] < time() - filemtime($fqfn)) {
-				unlink($fqfn);
-			}
-		} //END - foreach
 	}
 
 	// Detects base URL
@@ -586,13 +572,7 @@ EOT;
 	// Only read files if the feature is enabled
 	if ($settings['listfiles']) {
 		$file_array = createArrayFromPath($data['uploaddir']);
-
-		// Removing old files
-		if ($settings['time_limit'] > 0)
-			removeOldFiles($data['uploaddir']);
-
-		$file_array = createArrayFromPath($data['uploaddir']);
-	}
+    }
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -617,13 +597,13 @@ EOT;
             &nbsp;&nbsp;
             <input type="submit" name="Upload" />
 		</form>
-		<?php if (($settings['listfiles']) && (count($file_array) > 0)) { ?>
+		<?php if ($settings['listfiles']) { ?>
 			<ul id="simpleupload-ul">
 				<?php
 
                     $displayed = 0;
 
-					foreach ($file_array as $mtime => $filename) {
+					foreach ($file_array as $fullpath => $filename) {
 						$fqfn = $data['uploaddir'] . DIRECTORY_SEPARATOR . $filename;
 						$file_info = array();
 						$file_owner = false;
