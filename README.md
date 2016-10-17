@@ -105,3 +105,25 @@ Edit the NGINX configuration file (`/etc/nginx/sites-enabled/fileuploader`):
 			include fastcgi_params;
 		}
 	}
+
+# php.ini configuration
+
+    ;;;;;;;;;;;;;;;;
+    ; File Uploads ;
+    ;;;;;;;;;;;;;;;;
+    
+    ; Whether to allow HTTP file uploads.
+    ; http://php.net/file-uploads
+    file_uploads = On
+    
+    ; Temporary directory for HTTP uploaded files (will use system default if not
+    ; specified).
+    ; http://php.net/upload-tmp-dir
+    ;upload_tmp_dir =
+    
+    ; Maximum allowed size for uploaded files.
+    ; http://php.net/upload-max-filesize
+    upload_max_filesize = 200M
+    
+    ; Maximum number of files that can be uploaded via a single request
+    max_file_uploads = 20
