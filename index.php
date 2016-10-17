@@ -503,6 +503,8 @@
 			<?=$data['description']?>
 			Choose a file or Drag&amp;Drop. Maximum upload size is <?php echo $data['max_upload_size']; ?>.<br /><br />
 			<input type="file" name="file[]" id="simpleupload-input" />
+            &nbsp;&nbsp;
+            <input type="submit" name="Upload" />
 		</form>
 		<?php if (($settings['listfiles']) && (count($file_array) > 0)) { ?>
 			<ul id="simpleupload-ul">
@@ -587,10 +589,10 @@
 				target_form.addEventListener('drop', handleFiles, false);
 
 				// Register onchange-event function
-				target_input.onchange = function () {
-					addFileLi('Uploading...', '');
-					target_form.submit();
-				};
+				//target_input.onchange = function () {
+				//	addFileLi('Uploading...', '');
+				//	target_form.submit();
+				//};
 			}
 
 			/**
