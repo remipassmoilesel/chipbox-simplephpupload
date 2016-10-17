@@ -224,7 +224,7 @@
 				$_SESSION['upload_user_files'][] = $file_data['target_file_name'];
 			}
 
-			echo $settings['url'] .  $file_data['target_file_name'] . "\n";
+			echo "'" . $settings['url'] .  $file_data['target_file_name'] . "' has been uploaded \n";
 
 			// Return target file name for later handling
 			return $file_data['upload_target_file'];
