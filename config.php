@@ -13,3 +13,4 @@ $settings['description'] = "Upload files and share them !";
 $settings['url'] = autoDetectBaseUrl();
 $settings['allow_private'] = false;
 $settings['ribbon_enable'] = false;
+$settings['random_name_len'] = false;
