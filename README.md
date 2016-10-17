@@ -12,6 +12,13 @@ Just drop a PHP file in any directory, and adapt 'php.ini'
 
 > :warning: **Security warning**: There is no limit on file size or file type. Please make sure that file permissions are set right so nobody can execute uploaded code. See [server configuration](#server-configuration) for examples.
 
+On OpenWRT with lighttpd:
+
+    $ cd /www
+    $ wget https://github.com/remipassmoilesel/minibox-simple-php-upload/archive/master.zip
+    $ unzip master.zip
+    $ chown -R http:www-data minibox-simple-php-upload
+
 ## Configuration
 
 There are few options that you can change by editing the file itself:
