@@ -373,6 +373,11 @@
 			dirname(getenv('SCRIPT_NAME'))
 		);
 
+        // add trailingslash if necessary
+        if(substr ($base_url, strlen($base_url) - 1, 1) != "/"){
+            $base_url .= "/";
+        }
+
 		return $base_url;
 	}
 
