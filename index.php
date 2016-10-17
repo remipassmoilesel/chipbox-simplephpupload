@@ -165,6 +165,10 @@
 		// Displaying debug information
 		echo '<h2>SESSION:</h2>';
 		echo '<pre>' . print_r($_SESSION, true) . '</pre>';
+
+        // Displaying debug information
+		echo '<h2>FILES:</h2>';
+		echo '<pre>' . print_r($_FILES, true) . '</pre>';
 	}
 
 	// Format file size
