@@ -189,6 +189,14 @@
             animation: upanim 2s linear 0s infinite alternate;
         }
         
+        a{
+            color: #7979FF;
+            text-decoration: none;
+        }
+        a:hover{
+           text-decoration: underline;
+        }
+        
         @keyframes upanim {
             from {
                 opacity: 0.3;
@@ -220,15 +228,30 @@
             margin: auto;
             margin-top: 50px;
             margin-bottom: 50px;
+        }  
+        
+        .messageBlock{
+            width: 80%;
+            margin: auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }   
+        
+        .backToMainLink{
+            display: block;
+            width: 80%;
+            margin: auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
         }
     </style>
 EOT;
-
 
     // Show an pretty error and die
     function showErrorAndDie($message){
 
         global $styleBlock;
+        global $settings;
 
         echo <<<EOT
     <html>
@@ -239,9 +262,33 @@ EOT;
     <body>
         <h1>Error</h1>
         <div class='errorBlock'>$message</div>
+        
+        <a class="backToMainLink" href='{$settings['url']}'>Back to main page</a>
     </body>
 EOT;
         die();
+    }
+
+    // Show a pretty message and exit
+    function showMessageAndExit($message){
+
+        global $styleBlock;
+        global $settings;
+
+        echo <<<EOT
+        <html>
+        <head>
+            <title>{$settings['title']}</title>
+            $styleBlock
+        </head>
+        <body>
+            <h1>{$settings['title']}</h1>
+            <div class='messageBlock'>$message</div>
+            
+            <a class="backToMainLink" href='{$settings['url']}'>Back to main page</a>
+        </body>
+EOT;
+        exit;
     }
 
 	// Enabling error reporting
@@ -340,6 +387,9 @@ EOT;
 	}
 
 	// Handling file upload
+    // return an array with:
+    //  [0]: status true|false
+    //  [1]: message
 	function uploadFile ($file_data) {
 		global $settings, $data;
 
@@ -364,8 +414,7 @@ EOT;
 
 		// Do now allow to overwriting files
 		if (isReadableFile($file_data['upload_target_file'])) {
-			echo 'File name already exists' . "\n";
-			return false;
+            return [false, 'File name already exists'];
 		}
 
 		// Moving uploaded file OK
@@ -374,13 +423,10 @@ EOT;
 				$_SESSION['upload_user_files'][] = $file_data['target_file_name'];
 			}
 
-			echo "'" . $settings['url'] .  $file_data['target_file_name'] . "' has been uploaded \n";
+			return [true, "'" . $settings['url'] .  $file_data['target_file_name'] . "' has been uploaded"];
 
-			// Return target file name for later handling
-			return $file_data['upload_target_file'];
 		} else {
-			echo 'Error: unable to upload the file.';
-			return false;
+            return [false, 'Error: unable to upload the file.'];
 		}
 	}
 
@@ -392,7 +438,7 @@ EOT;
 			$fqfn = $data['uploaddir'] . DIRECTORY_SEPARATOR . $file;
 			if (!in_array($file, $data['ignores']) && isReadableFile($fqfn)) {
 				unlink($fqfn);
-				echo 'File has been removed';
+				showMessageAndExit('File has been removed');
 				exit;
 			}
 		}
@@ -407,10 +453,10 @@ EOT;
 			if (!in_array($file, $data['ignores']) && isReadableFile($fqfn)) {
 				if (substr($file, 0, 1) === '.') {
 					rename($fqfn, substr($fqfn, 1));
-					echo 'File has been made visible';
+                    showMessageAndExit('File has been made visible');
 				} else {
 					rename($fqfn, $data['uploaddir'] . DIRECTORY_SEPARATOR . '.' . $file);
-					echo 'File has been hidden';
+                    showMessageAndExit('File has been hidden');
 				}
 				exit;
 			}
@@ -424,16 +470,24 @@ EOT;
 
 	// Files are being POSEed. Uploading them one by one.
 	if (isset($_FILES['file'])) {
-		header('Content-type: text/plain');
-		if (is_array($_FILES['file'])) {
+
+        $messages = "";
+        $errorHappened = false;
+
+        if (is_array($_FILES['file'])) {
 			$file_array = diverseArray($_FILES['file']);
 			foreach ($file_array as $file_data) {
-				$targetFile = uploadFile($file_data);
+				$r = uploadFile($file_data);
+                if($r[0] == false){
+                    $errorHappened = true;
+                }
+                $messages .= $r[1] . "<br/>";
 			} //END - foreach
 		} else {
-			$targetFile = uploadFile($_FILES['file']);
+			$message = uploadFile($_FILES['file'])[1];
 		}
-		exit;
+
+        showMessageAndExit($messages);
 	}
 
 	// Other file functions (delete, private).
