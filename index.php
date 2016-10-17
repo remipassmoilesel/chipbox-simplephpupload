@@ -518,6 +518,9 @@
 		<?php if (($settings['listfiles']) && (count($file_array) > 0)) { ?>
 			<ul id="simpleupload-ul">
 				<?php
+
+                    $displayed = 0;
+
 					foreach ($file_array as $mtime => $filename) {
 						$fqfn = $data['uploaddir'] . DIRECTORY_SEPARATOR . $filename;
 						$file_info = array();
@@ -563,8 +566,14 @@
 							}
 
 							echo "</li>";
+
+                            $displayed++;
 						}
 					}
+
+                    if($displayed < 1){
+                        echo "<li>No files to display. Upload some !</li>";
+                    }
 				?>
 			</ul>
 		<?php
