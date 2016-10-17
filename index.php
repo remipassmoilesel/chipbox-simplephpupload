@@ -662,5 +662,9 @@
 
 		//-->
 		</script>
+
+        <p>This page is available at: <a href="<?= $settings['url'] ?>"><?= $settings['url'] ?></a></p>
+        <p>Based on: <a href="https://github.com/muchweb/simple-php-upload">
+                https://github.com/muchweb/simple-php-upload</a></p>
 	</body>
 </html>
