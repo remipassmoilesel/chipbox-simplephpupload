@@ -14,6 +14,12 @@
 		along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 
+    /**
+     * DO NOT CHANGE CONFIGURATION HERE, USE CONFIG.PHP INSTEAD
+     *
+     *
+     */
+
 	// =============={ Configuration Begin }==============
 	$settings = array(
 
@@ -37,7 +43,7 @@
 
 		// Allow users to mark files as hidden
 		// Default: true
-		'allow_private' => true,
+		'allow_private' => false,
 
 		// Display file sizes
 		// Default: true
@@ -45,7 +51,7 @@
 
 		// Randomize file names. Number for file name lenght or false to disable.
 		// Default: 8
-		'random_name_len' => 8,
+		'random_name_len' => false,
 
 		// Keep filetype (file extension) information (if random name is activated).
 		// Default: true
@@ -61,7 +67,7 @@
 
 		// Complete URL to your directory with trailing slash (!)
 		// Default: autoDetectBaseUrl()
-		'url' => 'http://localhost:8000/',
+		'url' => autoDetectBaseUrl(),
 
 		// Amount of seconds that each file should be stored for (0 for no limit)
 		// Default: 30 days (60 * 60 * 24 * 30)
@@ -87,7 +93,7 @@
 
 		// Privacy: Allow external references (the "fork me" ribbon)
 		// Default: true
-		'ribbon_enable' => true,
+		'ribbon_enable' => false,
 	);
 	// =============={ Configuration End }==============
 
