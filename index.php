@@ -547,8 +547,8 @@
 							echo "<li class=\"' . $class . '\">";
 
 							// Create full-qualified URL and clean it a bit
-							$url = str_replace('/./', '/', sprintf('%s%s/%s', $settings['url'], $data['uploaddir'], $filename));
-
+                            // $url = str_replace('/./', '/', sprintf('%s%s/%s', $settings['url'], $data['uploaddir'], $filename));
+                            $url = $settings['url'] . $filename;
 							echo "<a class=\"uploaded_file\" href=\"$url\" target=\"_blank\">$filename<span>$file_info</span></a>";
 
 							if ($file_owner) {
