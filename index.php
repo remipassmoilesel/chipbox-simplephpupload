@@ -210,7 +210,8 @@
         
         .footer {
             margin: auto;
-            margin-bottom: 50px;
+            margin-top: 5em;
+            margin-bottom: 3em;
         
             font-size: 0.9em;
             background: rgba(255, 255, 255, 0.05);
@@ -752,7 +753,6 @@ EOT;
 		</script>
 
         <div class="footer">
-            <p>This page is available at: <a href="<?= $settings['url'] ?>"><?= $settings['url'] ?></a></p>
             <p>Source code: <a href="https://github.com/remipassmoilesel/chipbox-simple-php-upload">
                     https://github.com/remipassmoilesel/chipbox-simple-php-upload</a></p>
         </div>
