@@ -1,10 +1,10 @@
 # Simple PHP upload
 
-Simple single-file PHP file upload (file share hosting) script.
+Simple PHP file-sharing cript. Modified to be used on a TP-Link MR3020, with OpenWRT Chaos Calmer. 
+See: https://github.com/remipassmoilesel/chipbox
 
-Modified to be used on a TP-Link MR3020, with OpenWRT Chaos Calmer.
-
-Based on: https://github.com/muchweb/simple-php-upload Thanks a lot !
+Based on: https://github.com/muchweb/simple-php-upload 
+Thanks a lot !
 
 ## Installation
 
